@@ -66,16 +66,16 @@ namespace UnityEditor
             m_OffsetXProperty = serializedObject.FindProperty("offsetX");
             m_OffsetYProperty = serializedObject.FindProperty("offsetY");
 
-            m_ShowServerLabel = new GUIContent("Server Info", "Details of internal server state");
-            m_ShowServerConnectionsLabel = new GUIContent("Server Connections", "List of local and remote network connections to the server");
-            m_ShowServerObjectsLabel = new GUIContent("Server Objects", "Networked objects spawned by the server");
-            m_ShowClientLabel = new GUIContent("Client Info", "Details of internal client state");
-            m_ShowClientObjectsLabel = new GUIContent("Client Objects", "Networked objects created on the client");
-            m_ShowMatchMakerLabel = new GUIContent("MatchMaker Info", "Details about the matchmaker state");
-            m_ShowControlsLabel = new GUIContent("Runtime Controls", "Buttons for controlling network state at runtime");
-            m_ShowRuntimeGuiLabel = new GUIContent("Show Runtime GUI", "Show the default network control GUI when the game is running");
-            m_OffsetXLabel = new GUIContent("GUI Horizontal Offset", "Horizontal offset of runtime GUI");
-            m_OffsetYLabel = new GUIContent("GUI Vertical Offset", "Vertical offset of runtime GUI");
+            m_ShowServerLabel = EditorGUIUtility.TrTextContent("Server Info", "Details of internal server state");
+            m_ShowServerConnectionsLabel = EditorGUIUtility.TrTextContent("Server Connections", "List of local and remote network connections to the server");
+            m_ShowServerObjectsLabel = EditorGUIUtility.TrTextContent("Server Objects", "Networked objects spawned by the server");
+            m_ShowClientLabel = EditorGUIUtility.TrTextContent("Client Info", "Details of internal client state");
+            m_ShowClientObjectsLabel = EditorGUIUtility.TrTextContent("Client Objects", "Networked objects created on the client");
+            m_ShowMatchMakerLabel = EditorGUIUtility.TrTextContent("MatchMaker Info", "Details about the matchmaker state");
+            m_ShowControlsLabel = EditorGUIUtility.TrTextContent("Runtime Controls", "Buttons for controlling network state at runtime");
+            m_ShowRuntimeGuiLabel = EditorGUIUtility.TrTextContent("Show Runtime GUI", "Show the default network control GUI when the game is running");
+            m_OffsetXLabel = EditorGUIUtility.TrTextContent("GUI Horizontal Offset", "Horizontal offset of runtime GUI");
+            m_OffsetYLabel = EditorGUIUtility.TrTextContent("GUI Vertical Offset", "Vertical offset of runtime GUI");
         }
 
         List<bool> m_ShowDetailForConnections;

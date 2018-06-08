@@ -9,7 +9,7 @@ namespace UnityEditor
     [CanEditMultipleObjects]
     public class NetworkTransformEditor : Editor
     {
-        private static GUIContent[] axisOptions = {new GUIContent("None"), new GUIContent("X"), new GUIContent("Y (Top-Down 2D)"), new GUIContent("Z (Side-on 2D)"), new GUIContent("XY (FPS)"), new GUIContent("XZ"), new GUIContent("YZ"), new GUIContent("XYZ (full 3D)")};
+        private static GUIContent[] axisOptions = {EditorGUIUtility.TrTextContent("None"), new GUIContent("X"), EditorGUIUtility.TrTextContent("Y (Top-Down 2D)"), EditorGUIUtility.TrTextContent("Z (Side-on 2D)"), EditorGUIUtility.TrTextContent("XY (FPS)"), new GUIContent("XZ"), new GUIContent("YZ"), EditorGUIUtility.TrTextContent("XYZ (full 3D)")};
 
         bool m_Initialized;
         NetworkTransform m_SyncTransform;
@@ -83,17 +83,17 @@ namespace UnityEditor
             m_SyncSpin = serializedObject.FindProperty("m_SyncSpin");
 
             m_NetworkSendIntervalProperty = serializedObject.FindProperty("m_SendInterval");
-            m_NetworkSendIntervalLabel = new GUIContent("Network Send Rate", "Number of network updates per second.");
+            m_NetworkSendIntervalLabel = EditorGUIUtility.TrTextContent("Network Send Rate", "Number of network updates per second.");
             EditorGUI.indentLevel += 1;
-            m_MovementThesholdLabel = new GUIContent("Movement Threshold", "The distance that this object can move without sending a movement synchronization update.");
-            m_VelocityThresholdLabel = new GUIContent("Velocity Threshold", "The minimum velocity difference that will be synchronized over the network.");
-            m_SnapThresholdLabel = new GUIContent("Snap Threshold", "If a movement update puts this object further from its current position that this value, it will snap to the updated position instead of moving smoothly.");
+            m_MovementThesholdLabel = EditorGUIUtility.TrTextContent("Movement Threshold", "The distance that this object can move without sending a movement synchronization update.");
+            m_VelocityThresholdLabel = EditorGUIUtility.TrTextContent("Velocity Threshold", "The minimum velocity difference that will be synchronized over the network.");
+            m_SnapThresholdLabel = EditorGUIUtility.TrTextContent("Snap Threshold", "If a movement update puts this object further from its current position that this value, it will snap to the updated position instead of moving smoothly.");
 
-            m_InterpolateRotationLabel = new GUIContent("Interpolate Rotation Factor", "The larger this number is, the faster the object will interpolate to the target facing direction.");
-            m_InterpolateMovementLabel = new GUIContent("Interpolate Movement Factor", "The larger this number is, the faster the object will interpolate to the target position.");
-            m_RotationSyncCompressionLabel = new GUIContent("Compress Rotation", "How much to compress rotation sync updates.\n\nChoose None for no compression.\n\nChoose Low for a low amount of compression that preserves accuracy.\n\nChoose High for a high amount of compression that sacrifices accuracy.");
-            m_RotationAxisLabel = new GUIContent("Rotation Axis", "Which axis to use for rotation.");
-            m_SyncSpinLabel = new GUIContent("Sync Angular Velocity", "Enable to sync angular velocity.");
+            m_InterpolateRotationLabel = EditorGUIUtility.TrTextContent("Interpolate Rotation Factor", "The larger this number is, the faster the object will interpolate to the target facing direction.");
+            m_InterpolateMovementLabel = EditorGUIUtility.TrTextContent("Interpolate Movement Factor", "The larger this number is, the faster the object will interpolate to the target position.");
+            m_RotationSyncCompressionLabel = EditorGUIUtility.TrTextContent("Compress Rotation", "How much to compress rotation sync updates.\n\nChoose None for no compression.\n\nChoose Low for a low amount of compression that preserves accuracy.\n\nChoose High for a high amount of compression that sacrifices accuracy.");
+            m_RotationAxisLabel = EditorGUIUtility.TrTextContent("Rotation Axis", "Which axis to use for rotation.");
+            m_SyncSpinLabel = EditorGUIUtility.TrTextContent("Sync Angular Velocity", "Enable to sync angular velocity.");
             EditorGUI.indentLevel -= 1;
         }
 

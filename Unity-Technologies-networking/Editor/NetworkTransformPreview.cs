@@ -25,7 +25,7 @@ namespace UnityEditor.Networking
         {
             if (m_Title == null)
             {
-                m_Title = new GUIContent("Network Transform");
+                m_Title = EditorGUIUtility.TrTextContent("Network Transform");
             }
             return m_Title;
         }

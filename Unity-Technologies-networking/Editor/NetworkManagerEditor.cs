@@ -104,44 +104,44 @@ namespace UnityEditor
             m_Initialized = true;
             m_NetworkManager = target as NetworkManager;
 
-            m_ShowNetworkLabel = new GUIContent("Network Info", "Network host settings");
-            m_ShowSpawnLabel = new GUIContent("Spawn Info", "Registered spawnable objects");
-            m_OfflineSceneLabel = new GUIContent("Offline Scene", "The scene loaded when the network goes offline (disconnected from server)");
-            m_OnlineSceneLabel = new GUIContent("Online Scene", "The scene loaded when the network comes online (connected to server)");
-            m_DontDestroyOnLoadLabel = new GUIContent("Don't Destroy on Load", "Enable to persist the NetworkManager across scene changes.");
-            m_RunInBackgroundLabel = new GUIContent("Run in Background", "Enable to ensure that the application runs when it does not have focus.\n\nThis is required when testing multiple instances on a single machine, but not recommended for shipping on mobile platforms.");
-            m_ScriptCRCCheckLabel = new GUIContent("Script CRC Check", "Enable to cause a CRC check between server and client that ensures the NetworkBehaviour scripts match.\n\nThis may not be appropriate in some cases, such as when the client and server are different Unity projects.");
+            m_ShowNetworkLabel = EditorGUIUtility.TrTextContent("Network Info", "Network host settings");
+            m_ShowSpawnLabel = EditorGUIUtility.TrTextContent("Spawn Info", "Registered spawnable objects");
+            m_OfflineSceneLabel = EditorGUIUtility.TrTextContent("Offline Scene", "The scene loaded when the network goes offline (disconnected from server)");
+            m_OnlineSceneLabel = EditorGUIUtility.TrTextContent("Online Scene", "The scene loaded when the network comes online (connected to server)");
+            m_DontDestroyOnLoadLabel = EditorGUIUtility.TrTextContent("Don't Destroy on Load", "Enable to persist the NetworkManager across scene changes.");
+            m_RunInBackgroundLabel = EditorGUIUtility.TrTextContent("Run in Background", "Enable to ensure that the application runs when it does not have focus.\n\nThis is required when testing multiple instances on a single machine, but not recommended for shipping on mobile platforms.");
+            m_ScriptCRCCheckLabel = EditorGUIUtility.TrTextContent("Script CRC Check", "Enable to cause a CRC check between server and client that ensures the NetworkBehaviour scripts match.\n\nThis may not be appropriate in some cases, such as when the client and server are different Unity projects.");
 
-            m_MaxConnectionsLabel  = new GUIContent("Max Connections", "Maximum number of network connections");
-            m_MinUpdateTimeoutLabel = new GUIContent("Min Update Timeout", "Minimum time network thread waits for events");
-            m_ConnectTimeoutLabel = new GUIContent("Connect Timeout", "Time to wait for timeout on connecting");
-            m_DisconnectTimeoutLabel = new GUIContent("Disconnect Timeout", "Time to wait for detecting disconnect");
-            m_PingTimeoutLabel = new GUIContent("Ping Timeout", "Time to wait for ping messages");
+            m_MaxConnectionsLabel  = EditorGUIUtility.TrTextContent("Max Connections", "Maximum number of network connections");
+            m_MinUpdateTimeoutLabel = EditorGUIUtility.TrTextContent("Min Update Timeout", "Minimum time network thread waits for events");
+            m_ConnectTimeoutLabel = EditorGUIUtility.TrTextContent("Connect Timeout", "Time to wait for timeout on connecting");
+            m_DisconnectTimeoutLabel = EditorGUIUtility.TrTextContent("Disconnect Timeout", "Time to wait for detecting disconnect");
+            m_PingTimeoutLabel = EditorGUIUtility.TrTextContent("Ping Timeout", "Time to wait for ping messages");
 
-            m_ThreadAwakeTimeoutLabel = new GUIContent("Thread Awake Timeout", "The minimum time period when system will check if there are any messages for send (or receive).");
-            m_ReactorModelLabel = new GUIContent("Reactor Model", "Defines reactor model for the network library");
-            m_ReactorMaximumReceivedMessagesLabel = new GUIContent("Reactor Max Recv Messages", "Defines maximum amount of messages in the receive queue");
-            m_ReactorMaximumSentMessagesLabel = new GUIContent("Reactor Max Sent Messages", "Defines maximum message count in sent queue");
+            m_ThreadAwakeTimeoutLabel = EditorGUIUtility.TrTextContent("Thread Awake Timeout", "The minimum time period when system will check if there are any messages for send (or receive).");
+            m_ReactorModelLabel = EditorGUIUtility.TrTextContent("Reactor Model", "Defines reactor model for the network library");
+            m_ReactorMaximumReceivedMessagesLabel = EditorGUIUtility.TrTextContent("Reactor Max Recv Messages", "Defines maximum amount of messages in the receive queue");
+            m_ReactorMaximumSentMessagesLabel = EditorGUIUtility.TrTextContent("Reactor Max Sent Messages", "Defines maximum message count in sent queue");
 
-            m_MaxBufferedPacketsLabel = new GUIContent("Max Buffered Packets", "The maximum number of packets that can be buffered by a NetworkConnection for each channel. This corresponds to the 'ChannelOption.MaxPendingBuffers' channel option.");
-            m_AllowFragmentationLabel = new GUIContent("Packet Fragmentation", "Enable to allow NetworkConnection instances to fragment packets that are larger than the maxPacketSize, up to a maximum size of 64K.\n\nThis can cause delays when sending large packets.");
-            m_UseWebSocketsLabel = new GUIContent("Use WebSockets", "This makes the server listen for connections using WebSockets. This allows WebGL clients to connect to the server.");
-            m_UseSimulatorLabel = new GUIContent("Use Network Simulator", "This simulates network latency and packet loss on clients. Useful for testing under internet-like conditions");
-            m_LatencyLabel = new GUIContent("Simulated Average Latency", "The amount of delay in milliseconds to add to network packets");
-            m_PacketLossPercentageLabel = new GUIContent("Simulated Packet Loss", "The percentage of packets that should be dropped");
-            m_MatchHostLabel = new GUIContent("MatchMaker Host URI", "The hostname of the matchmaking server.\n\nThe default is mm.unet.unity3d.com, which will connect a client to the nearest data center geographically.");
-            m_MatchPortLabel = new GUIContent("MatchMaker Port", "The port of the matchmaking service.");
-            m_MatchNameLabel = new GUIContent("Match Name", "The name that will be used when creating a match in MatchMaker.");
-            m_MatchSizeLabel = new GUIContent("Maximum Match Size", "The maximum size for the match. This value is compared to the maximum size specified in the service configuration at multiplayer.unity3d.com and the lower of the two is enforced. It must be greater than 1. This is typically used to override the match size for various game modes.");
-            m_NetworkAddressLabel = new GUIContent("Network Address", "The network address currently in use.");
-            m_NetworkPortLabel = new GUIContent("Network Port", "The network port currently in use.");
-            m_ServerBindToIPLabel = new GUIContent("Server Bind to IP", "Enable to bind the server to a specific IP address.");
-            m_ServerBindAddressLabel = new GUIContent("Server Bind Address Label", "IP to bind the server to, when Server Bind to IP is enabled.");
-            m_MaxDelayLabel = new GUIContent("Max Delay", "The maximum delay before sending packets on connections.");
-            m_PlayerPrefabLabel = new GUIContent("Player Prefab", "The default prefab to be used to create player objects on the server.");
-            m_AutoCreatePlayerLabel = new GUIContent("Auto Create Player", "Enable to automatically create player objects on connect and on Scene change.");
-            m_PlayerSpawnMethodLabel = new GUIContent("Player Spawn Method", "How to determine which NetworkStartPosition to spawn players at, from all NetworkStartPositions in the Scene.\n\nRandom chooses a random NetworkStartPosition.\n\nRound Robin chooses the next NetworkStartPosition on a round-robin basis.");
-            m_AdvancedConfigurationLabel = new GUIContent("Advanced Configuration", "Enable to view and edit advanced settings.");
+            m_MaxBufferedPacketsLabel = EditorGUIUtility.TrTextContent("Max Buffered Packets", "The maximum number of packets that can be buffered by a NetworkConnection for each channel. This corresponds to the 'ChannelOption.MaxPendingBuffers' channel option.");
+            m_AllowFragmentationLabel = EditorGUIUtility.TrTextContent("Packet Fragmentation", "Enable to allow NetworkConnection instances to fragment packets that are larger than the maxPacketSize, up to a maximum size of 64K.\n\nThis can cause delays when sending large packets.");
+            m_UseWebSocketsLabel = EditorGUIUtility.TrTextContent("Use WebSockets", "This makes the server listen for connections using WebSockets. This allows WebGL clients to connect to the server.");
+            m_UseSimulatorLabel = EditorGUIUtility.TrTextContent("Use Network Simulator", "This simulates network latency and packet loss on clients. Useful for testing under internet-like conditions");
+            m_LatencyLabel = EditorGUIUtility.TrTextContent("Simulated Average Latency", "The amount of delay in milliseconds to add to network packets");
+            m_PacketLossPercentageLabel = EditorGUIUtility.TrTextContent("Simulated Packet Loss", "The percentage of packets that should be dropped");
+            m_MatchHostLabel = EditorGUIUtility.TrTextContent("MatchMaker Host URI", "The hostname of the matchmaking server.\n\nThe default is mm.unet.unity3d.com, which will connect a client to the nearest data center geographically.");
+            m_MatchPortLabel = EditorGUIUtility.TrTextContent("MatchMaker Port", "The port of the matchmaking service.");
+            m_MatchNameLabel = EditorGUIUtility.TrTextContent("Match Name", "The name that will be used when creating a match in MatchMaker.");
+            m_MatchSizeLabel = EditorGUIUtility.TrTextContent("Maximum Match Size", "The maximum size for the match. This value is compared to the maximum size specified in the service configuration at multiplayer.unity3d.com and the lower of the two is enforced. It must be greater than 1. This is typically used to override the match size for various game modes.");
+            m_NetworkAddressLabel = EditorGUIUtility.TrTextContent("Network Address", "The network address currently in use.");
+            m_NetworkPortLabel = EditorGUIUtility.TrTextContent("Network Port", "The network port currently in use.");
+            m_ServerBindToIPLabel = EditorGUIUtility.TrTextContent("Server Bind to IP", "Enable to bind the server to a specific IP address.");
+            m_ServerBindAddressLabel = EditorGUIUtility.TrTextContent("Server Bind Address Label", "IP to bind the server to, when Server Bind to IP is enabled.");
+            m_MaxDelayLabel = EditorGUIUtility.TrTextContent("Max Delay", "The maximum delay before sending packets on connections.");
+            m_PlayerPrefabLabel = EditorGUIUtility.TrTextContent("Player Prefab", "The default prefab to be used to create player objects on the server.");
+            m_AutoCreatePlayerLabel = EditorGUIUtility.TrTextContent("Auto Create Player", "Enable to automatically create player objects on connect and on Scene change.");
+            m_PlayerSpawnMethodLabel = EditorGUIUtility.TrTextContent("Player Spawn Method", "How to determine which NetworkStartPosition to spawn players at, from all NetworkStartPositions in the Scene.\n\nRandom chooses a random NetworkStartPosition.\n\nRound Robin chooses the next NetworkStartPosition on a round-robin basis.");
+            m_AdvancedConfigurationLabel = EditorGUIUtility.TrTextContent("Advanced Configuration", "Enable to view and edit advanced settings.");
 
             // top-level properties
             m_DontDestroyOnLoadProperty = serializedObject.FindProperty("m_DontDestroyOnLoad");
@@ -535,7 +535,7 @@ namespace UnityEditor
             GUIContent label;
             if (go == null)
             {
-                label = new GUIContent("Empty", "Drag a prefab with a NetworkIdentity here");
+                label = EditorGUIUtility.TrTextContent("Empty", "Drag a prefab with a NetworkIdentity here");
             }
             else
             {

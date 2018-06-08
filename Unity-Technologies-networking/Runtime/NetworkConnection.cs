@@ -592,7 +592,7 @@ namespace UnityEngine.Networking
             HandleBytes(bytes, numBytes, channelId);
         }
 
-        [Obsolete("TransportRecieve has been deprecated. Use TransportReceive instead (UnityUpgradable) -> TransportReceive(*)", false)]
+        [Obsolete("TransportRecieve has been deprecated. Use TransportReceive instead.", false)]
         public virtual void TransportRecieve(byte[] bytes, int numBytes, int channelId)
         {
             TransportReceive(bytes, numBytes, channelId);

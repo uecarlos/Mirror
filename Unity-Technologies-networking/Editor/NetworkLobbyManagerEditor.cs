@@ -34,16 +34,16 @@ namespace UnityEditor
         {
             if (!m_Initialized)
             {
-                m_LobbySceneLabel = new GUIContent("Lobby Scene", "The scene loaded for the lobby.");
-                m_PlaySceneLabel = new GUIContent("Play Scene", "The scene loaded to play the game.");
+                m_LobbySceneLabel = EditorGUIUtility.TrTextContent("Lobby Scene", "The scene loaded for the lobby.");
+                m_PlaySceneLabel = EditorGUIUtility.TrTextContent("Play Scene", "The scene loaded to play the game.");
 
-                m_MaxPlayersLabel = new GUIContent("Max Players", "The maximum number of players allowed in the lobby.");
-                m_MaxPlayersPerConnectionLabel = new GUIContent("Max Players Per Connection", "The maximum number of players that each connection/client can have in the lobby. Defaults to 1.");
-                m_MinPlayersLabel = new GUIContent("Minimum Players", "The minimum number of players required to be ready for the game to start. If this is zero then the game can start with any number of players.");
+                m_MaxPlayersLabel = EditorGUIUtility.TrTextContent("Max Players", "The maximum number of players allowed in the lobby.");
+                m_MaxPlayersPerConnectionLabel = EditorGUIUtility.TrTextContent("Max Players Per Connection", "The maximum number of players that each connection/client can have in the lobby. Defaults to 1.");
+                m_MinPlayersLabel = EditorGUIUtility.TrTextContent("Minimum Players", "The minimum number of players required to be ready for the game to start. If this is zero then the game can start with any number of players.");
 
-                m_ShowLobbyGUILabel = new GUIContent("Show Lobby GUI", "Enable to display the default lobby UI.");
-                m_LobbyPlayerPrefabLabel = new GUIContent("Lobby Player Prefab", "The prefab to use for a player in the Lobby Scene.");
-                m_GamePlayerPrefabLabel = new GUIContent("Game Player Prefab", "The prefab to use for a player in the Play Scene.");
+                m_ShowLobbyGUILabel = EditorGUIUtility.TrTextContent("Show Lobby GUI", "Enable to display the default lobby UI.");
+                m_LobbyPlayerPrefabLabel = EditorGUIUtility.TrTextContent("Lobby Player Prefab", "The prefab to use for a player in the Lobby Scene.");
+                m_GamePlayerPrefabLabel = EditorGUIUtility.TrTextContent("Game Player Prefab", "The prefab to use for a player in the Play Scene.");
 
                 m_ShowLobbyGUIProperty = serializedObject.FindProperty("m_ShowLobbyGUI");
                 m_MaxPlayersProperty = serializedObject.FindProperty("m_MaxPlayers");
