@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -185,7 +184,7 @@ namespace UnityEngine.Networking
 
         public void Connect(EndPoint secureTunnelEndPoint)
         {
-            bool usePlatformSpecificProtocols = NetworkTransport.DoesEndPointUsePlatformProtocols(secureTunnelEndPoint);
+            bool usePlatformSpecificProtocols = false;//NetworkTransport.DoesEndPointUsePlatformProtocols(secureTunnelEndPoint);
             PrepareForConnect(usePlatformSpecificProtocols);
 
             if (LogFilter.logDebug) { Debug.Log("Client Connect to remoteSockAddr"); }
@@ -387,11 +386,11 @@ namespace UnityEngine.Networking
                     if (LogFilter.logError) { Debug.LogError("NetworkClient Send when not connected to a server"); }
                     return false;
                 }
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
                 UnityEditor.NetworkDetailStats.IncrementStat(
                     UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                     MsgType.UserMessage, msgType.ToString() + ":" + msg.GetType().Name, 1);
-#endif
+#endif*/
                 return m_Connection.Send(msgType, msg);
             }
             if (LogFilter.logError) { Debug.LogError("NetworkClient Send with no connection"); }
@@ -437,11 +436,11 @@ namespace UnityEngine.Networking
                     if (LogFilter.logError) { Debug.LogError("NetworkClient SendUnreliable when not connected to a server"); }
                     return false;
                 }
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
                 UnityEditor.NetworkDetailStats.IncrementStat(
                     UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                     MsgType.UserMessage, msgType.ToString() + ":" + msg.GetType().Name, 1);
-#endif
+#endif*/
                 return m_Connection.SendUnreliable(msgType, msg);
             }
             if (LogFilter.logError) { Debug.LogError("NetworkClient SendUnreliable with no connection"); }
@@ -450,11 +449,11 @@ namespace UnityEngine.Networking
 
         public bool SendByChannel(short msgType, MessageBase msg, int channelId)
         {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.UserMessage, msgType.ToString() + ":" + msg.GetType().Name, 1);
-#endif
+#endif*/
             if (m_Connection != null)
             {
                 if (m_AsyncConnect != ConnectState.Connected)
@@ -573,11 +572,11 @@ namespace UnityEngine.Networking
                             return;
                         }
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
                         UnityEditor.NetworkDetailStats.IncrementStat(
                         UnityEditor.NetworkDetailStats.NetworkDirection.Incoming,
                         MsgType.LLAPIMsg, "msg", 1);
-#endif
+#endif*/
 
                         m_MsgReader.SeekZero();
                         m_Connection.TransportReceive(m_MsgBuffer, receivedSize, channelId);
@@ -805,9 +804,9 @@ namespace UnityEngine.Networking
             s_Clients = new List<NetworkClient>();
             s_IsActive = false;
             ClientScene.Shutdown();
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.ResetAll();
-#endif
+#endif*/
         }
 
         internal static void SetActive(bool state)
@@ -824,4 +823,3 @@ namespace UnityEngine.Networking
         }
     };
 }
-#endif //ENABLE_UNET

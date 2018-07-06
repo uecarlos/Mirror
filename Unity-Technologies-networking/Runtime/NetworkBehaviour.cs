@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,11 +69,11 @@ namespace UnityEngine.Networking
             writer.FinishMessage();
             ClientScene.readyConnection.SendWriter(writer, channelId);
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.Command, cmdName, 1);
-#endif
+#endif*/
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -98,11 +97,11 @@ namespace UnityEngine.Networking
             writer.FinishMessage();
             NetworkServer.SendWriterToReady(gameObject, writer, channelId);
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.Rpc, rpcName, 1);
-#endif
+#endif*/
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -119,11 +118,11 @@ namespace UnityEngine.Networking
 
             conn.SendWriter(writer, channelId);
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.Rpc, rpcName, 1);
-#endif
+#endif*/
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -146,11 +145,11 @@ namespace UnityEngine.Networking
             writer.FinishMessage();
             NetworkServer.SendWriterToReady(gameObject, writer, channelId);
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.SyncEvent, eventName, 1);
-#endif
+#endif*/
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -607,4 +606,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif //ENABLE_UNET

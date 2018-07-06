@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,6 @@ namespace UnityEngine.Networking
     {
 
         static bool s_Active;
-        static object s_Sync = new Object();
         static bool s_DontListen;
         static bool s_LocalClientActive;
         static ULocalConnectionToClient s_LocalConnection;
@@ -79,9 +77,9 @@ namespace UnityEngine.Networking
 
         public static void Reset()
         {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.ResetAll();
-#endif
+#endif*/
             NetworkTransport.Shutdown();
             NetworkTransport.Init();
             s_Active = false;
@@ -202,7 +200,7 @@ namespace UnityEngine.Networking
             Initialize();
 
             // only start server if we want to listen. otherwise this mode uses external connections instead
-            if (!s_DontListen) 
+            if (!s_DontListen)
             {
                 Initialize();
                 s_ServerPort = serverPort;
@@ -622,7 +620,7 @@ namespace UnityEngine.Networking
                 }
                 else
                 {
-                    remove.Add(kvp.Key); 
+                    remove.Add(kvp.Key);
                 }
             }
 
@@ -837,11 +835,11 @@ namespace UnityEngine.Networking
 
         static void OnData(NetworkConnection conn, int receivedSize, int channelId)
         {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Incoming,
                 MsgType.LLAPIMsg, "msg", 1);
-#endif
+#endif*/
             conn.TransportReceive(s_MsgBuffer, receivedSize, channelId);
         }
 
@@ -1436,11 +1434,11 @@ namespace UnityEngine.Networking
                     SendToReady(uv.gameObject, MsgType.ObjectSpawn, msg);
                 }
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
                 UnityEditor.NetworkDetailStats.IncrementStat(
                     UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                     MsgType.ObjectSpawn, uv.assetId.ToString(), 1);
-#endif
+#endif*/
             }
             else
             {
@@ -1466,11 +1464,11 @@ namespace UnityEngine.Networking
                     SendToReady(uv.gameObject, MsgType.ObjectSpawn, msg);
                 }
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
                 UnityEditor.NetworkDetailStats.IncrementStat(
                     UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                     MsgType.ObjectSpawnScene, "sceneId", 1);
-#endif
+#endif*/
             }
         }
 
@@ -1561,11 +1559,11 @@ namespace UnityEngine.Networking
                 uv.clientAuthorityOwner.RemoveOwnedObject(uv);
             }
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.ObjectDestroy, uv.assetId.ToString(), 1);
-#endif
+#endif*/
 
             ObjectDestroyMessage msg = new ObjectDestroyMessage();
             msg.netId = uv.netId;
@@ -1895,4 +1893,3 @@ namespace UnityEngine.Networking
         }
     };
 }
-#endif //ENABLE_UNET

@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -1204,4 +1203,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif //ENABLE_UNET

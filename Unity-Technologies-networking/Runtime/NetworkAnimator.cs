@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using UnityEngine;
 using UnityEngine.Networking.NetworkSystem;
@@ -82,7 +81,7 @@ namespace UnityEngine.Networking
             }
         }
 
-        internal void ResetParameterOptions()
+        public void ResetParameterOptions()
         {
             Debug.Log("ResetParameterOptions");
             m_ParameterSendBits = 0;
@@ -483,4 +482,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif

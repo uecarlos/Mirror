@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using UnityEngine;
 
@@ -1240,11 +1239,11 @@ namespace UnityEngine.Networking
 
             m_LocalTransformWriter.FinishMessage();
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.LocalPlayerTransform, "6:LocalPlayerTransform", 1);
-#endif
+#endif*/
             ClientScene.readyConnection.SendWriter(m_LocalTransformWriter, GetNetworkChannel());
         }
 
@@ -1252,11 +1251,11 @@ namespace UnityEngine.Networking
         {
             NetworkInstanceId netId = netMsg.reader.ReadNetworkId();
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Incoming,
                 MsgType.LocalPlayerTransform, "6:LocalPlayerTransform", 1);
-#endif
+#endif*/
 
             GameObject foundObj = NetworkServer.FindLocalObject(netId);
             if (foundObj == null)
@@ -1591,4 +1590,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif //ENABLE_UNET

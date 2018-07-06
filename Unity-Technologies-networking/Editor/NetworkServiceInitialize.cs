@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using UnityEditor;
 using UnityEditor.Connect;
 using UnityEditor.Web;
@@ -10,7 +9,7 @@ namespace UnityEditor
     {
         static NetworkServiceInitialize()
         {
-            UnityEditor.Analytics.CoreStats.OnRequireInBuildHandler += () =>
+            /*UnityEditor.Analytics.CoreStats.OnRequireInBuildHandler += () =>
                 {
                     string[] guids = new string[]
                     {
@@ -32,8 +31,7 @@ namespace UnityEditor
                     }
 
                     return false;
-                };
+                };*/
         }
     }
 }
-#endif

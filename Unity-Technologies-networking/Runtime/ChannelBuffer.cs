@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -235,11 +234,11 @@ namespace UnityEngine.Networking
 
         internal bool SendBytes(byte[] bytes, int bytesToSend)
         {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.HLAPIMsg, "msg", 1);
-#endif
+#endif*/
             if (bytesToSend > UInt16.MaxValue)
             {
                 if (LogFilter.logError) { Debug.LogError("ChannelBuffer:SendBytes cannot send packet larger than " + UInt16.MaxValue + " bytes"); }
@@ -329,11 +328,11 @@ namespace UnityEngine.Networking
 
         public bool SendInternalBuffer()
         {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.LLAPIMsg, "msg", 1);
-#endif
+#endif*/
             if (m_IsReliable && m_PendingPackets.Count > 0)
             {
                 // send until transport can take no more
@@ -359,4 +358,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif //ENABLE_UNET

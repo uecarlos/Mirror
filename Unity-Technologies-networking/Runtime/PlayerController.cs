@@ -1,6 +1,5 @@
 using System;
 
-#if ENABLE_UNET
 namespace UnityEngine.Networking
 {
     // This class represents the player entity in a network game, there can be multiple players per client
@@ -36,4 +35,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif //ENABLE_UNET

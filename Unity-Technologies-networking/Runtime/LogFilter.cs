@@ -1,6 +1,5 @@
 using System;
 
-#if ENABLE_UNET
 namespace UnityEngine.Networking
 {
     public class LogFilter
@@ -27,4 +26,3 @@ namespace UnityEngine.Networking
         static public bool logFatal { get { return currentLogLevel <= FilterLevel.Fatal; } }
     }
 }
-#endif //ENABLE_UNET

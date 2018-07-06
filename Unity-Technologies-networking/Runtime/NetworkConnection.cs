@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,7 +14,7 @@ namespace UnityEngine.Networking
         ChannelBuffer[] m_Channels;
         List<PlayerController> m_PlayerControllers = new List<PlayerController>();
         HashSet<NetworkIdentity> m_VisList = new HashSet<NetworkIdentity>();
-        internal HashSet<NetworkIdentity> visList { get { return m_VisList; } }
+        public HashSet<NetworkIdentity> visList { get { return m_VisList; } }
         NetworkWriter m_Writer = new NetworkWriter();
 
         Dictionary<short, NetworkMessageDelegate> m_MessageHandlersDict;
@@ -69,9 +68,9 @@ namespace UnityEngine.Networking
         Dictionary<short, PacketStat> m_PacketStats = new Dictionary<short, PacketStat>();
         internal Dictionary<short, PacketStat> packetStats { get { return m_PacketStats; }}
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
         static int s_MaxPacketStats = 255;//the same as maximum message types
-#endif
+#endif*/
 
         public virtual void Initialize(string networkAddress, int networkHostId, int networkConnectionId, HostTopology hostTopology)
         {
@@ -388,7 +387,7 @@ namespace UnityEngine.Networking
 
         public void ResetStats()
         {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             for (short i = 0; i < s_MaxPacketStats; i++)
             {
                 if (m_PacketStats.ContainsKey(i))
@@ -400,7 +399,7 @@ namespace UnityEngine.Networking
                     NetworkTransport.SetPacketStat(1, i, 0, 0);
                 }
             }
-#endif
+#endif*/
         }
 
         protected void HandleBytes(byte[] buffer, int receivedSize, int channelId)
@@ -462,7 +461,7 @@ namespace UnityEngine.Networking
                     }
                     lastMessageTime = Time.time;
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
                     UnityEditor.NetworkDetailStats.IncrementStat(
                         UnityEditor.NetworkDetailStats.NetworkDirection.Incoming,
                         MsgType.HLAPIMsg, "msg", 1);
@@ -473,9 +472,9 @@ namespace UnityEngine.Networking
                             UnityEditor.NetworkDetailStats.NetworkDirection.Incoming,
                             MsgType.UserMessage, msgType.ToString() + ":" + msgType.GetType().Name, 1);
                     }
-#endif
+#endif*/
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
                     if (m_PacketStats.ContainsKey(msgType))
                     {
                         PacketStat stat = m_PacketStats[msgType];
@@ -490,7 +489,7 @@ namespace UnityEngine.Networking
                         stat.bytes += sz;
                         m_PacketStats[msgType] = stat;
                     }
-#endif
+#endif*/
                 }
                 else
                 {
@@ -627,4 +626,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif //ENABLE_UNET

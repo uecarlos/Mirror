@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 
-#if ENABLE_UNET
-
 namespace UnityEngine.Networking
 {
     // This can't be an interface because users don't need to implement the
@@ -538,4 +536,3 @@ namespace UnityEngine.Networking.NetworkSystem
         }
     }
 }
-#endif //ENABLE_UNET

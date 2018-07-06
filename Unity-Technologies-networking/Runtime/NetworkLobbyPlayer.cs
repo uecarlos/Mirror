@@ -1,5 +1,3 @@
-#if ENABLE_UNET
-
 using System;
 using UnityEngine;
 using UnityEngine.Networking.NetworkSystem;
@@ -215,5 +213,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-
-#endif // ENABLE_UNET

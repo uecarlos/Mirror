@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using System.IO;
 using System.Reflection;
@@ -637,4 +636,3 @@ namespace UnityEditor
         }
     }
 }
-#endif //ENABLE_UNET

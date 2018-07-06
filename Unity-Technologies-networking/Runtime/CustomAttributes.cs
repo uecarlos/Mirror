@@ -1,7 +1,5 @@
 using System;
 
-#if ENABLE_UNET
-
 namespace UnityEngine.Networking
 {
     [AttributeUsage(AttributeTargets.Class)]
@@ -62,4 +60,3 @@ namespace UnityEngine.Networking
     {
     }
 }
-#endif //ENABLE_UNET

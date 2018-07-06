@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using System.IO;
 
@@ -51,7 +50,7 @@ namespace UnityEngine.Networking
         {
             // notNull? (see NetworkWriter)
             bool notNull = reader.ReadBoolean();
-            if (notNull) 
+            if (notNull)
             {
                 ushort size = ReadUInt16();
                 return reader.ReadBytes(size);
@@ -329,4 +328,3 @@ namespace UnityEngine.Networking
         }
     };
 }
-#endif //ENABLE_UNET

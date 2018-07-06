@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -119,4 +118,3 @@ namespace UnityEditor
         }
     }
 }
-#endif //ENABLE_UNET

@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 
 namespace UnityEngine.Networking
@@ -47,4 +46,3 @@ namespace UnityEngine.Networking
         public uint Value { get { return m_Value; } }
     }
 }
-#endif

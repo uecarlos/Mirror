@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -173,4 +172,3 @@ namespace UnityEditor
         }
     }
 } //namespace
-#endif //ENABLE_UNET

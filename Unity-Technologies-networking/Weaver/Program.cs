@@ -25,6 +25,7 @@ namespace Unity.UNetWeaver
     {
         public static bool Process(string unityEngine, string unetDLL, string outputDirectory, string[] assemblies, string[] extraAssemblyPaths, IAssemblyResolver assemblyResolver, Action<string> printWarning, Action<string> printError)
         {
+            Log.Warning("Weaver.Process called!");
             CheckDLLPath(unityEngine);
             CheckDLLPath(unetDLL);
             CheckOutputDirectory(outputDirectory);

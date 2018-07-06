@@ -1,7 +1,5 @@
 using System;
 
-#if ENABLE_UNET
-
 namespace UnityEngine.Networking
 {
     // Handles network messages on client and server
@@ -183,6 +181,3 @@ namespace UnityEngine.Networking
             // maybe add an InitialCapacity for Pending Buffers list if needed in the future
     }
 }
-
-
-#endif //ENABLE_UNET

@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -260,11 +259,11 @@ namespace UnityEngine.Networking
 
             NetworkServer.SendWriterToReady(uv.gameObject, writer, m_Behaviour.GetNetworkChannel());
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.SyncList, op.ToString(), 1);
-#endif
+#endif*/
 
             // ensure it is invoked on host
             if (m_Behaviour.isServer && m_Behaviour.isClient && m_Callback != null)
@@ -414,4 +413,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif //ENABLE_UNET

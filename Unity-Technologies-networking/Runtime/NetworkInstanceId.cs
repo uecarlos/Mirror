@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 
 namespace UnityEngine.Networking
@@ -50,4 +49,3 @@ namespace UnityEngine.Networking
         internal static NetworkInstanceId Zero = new NetworkInstanceId(0);
     }
 }
-#endif

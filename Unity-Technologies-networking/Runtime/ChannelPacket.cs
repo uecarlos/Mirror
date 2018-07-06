@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 
 namespace UnityEngine.Networking
@@ -52,11 +51,11 @@ namespace UnityEngine.Networking
                 // NoResources and reliable? Then it will be resent, so don't reset position, just return false.
                 if (error == (int)NetworkError.NoResources && m_IsReliable)
                 {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
                     UnityEditor.NetworkDetailStats.IncrementStat(
                         UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                         MsgType.HLAPIResend, "msg", 1);
-#endif
+#endif*/
                     return false;
                 }
 
@@ -68,4 +67,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif //ENABLE_UNET

@@ -1,7 +1,5 @@
 using System;
 
-#if ENABLE_UNET
-
 namespace UnityEngine.Networking
 {
     // a server's connection TO a LocalClient.
@@ -121,4 +119,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif //ENABLE_UNET

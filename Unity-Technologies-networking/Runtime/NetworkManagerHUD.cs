@@ -1,8 +1,6 @@
 using System;
 using System.ComponentModel;
 
-#if ENABLE_UNET
-
 namespace UnityEngine.Networking
 {
     [AddComponentMenu("Network/NetworkManagerHUD")]
@@ -271,4 +269,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif //ENABLE_UNET

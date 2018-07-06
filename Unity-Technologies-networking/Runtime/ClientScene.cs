@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using System;
 using System.Collections.Generic;
 using UnityEngine.Networking.NetworkSystem;
@@ -239,7 +238,7 @@ namespace UnityEngine.Networking
             {
                 var uv = uvs[i];
                 // not spawned yet etc.?
-                if (!uv.gameObject.activeSelf && 
+                if (!uv.gameObject.activeSelf &&
                     uv.gameObject.hideFlags != HideFlags.NotEditable && uv.gameObject.hideFlags != HideFlags.HideAndDontSave &&
                     !uv.sceneId.IsEmpty())
                 {
@@ -403,11 +402,11 @@ namespace UnityEngine.Networking
             }
             if (LogFilter.logDebug) { Debug.Log("Client spawn handler instantiating [netId:" + msg.netId + " asset ID:" + msg.assetId + " pos:" + msg.position + "]"); }
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Incoming,
                 MsgType.ObjectSpawn, GetStringForAssetId(msg.assetId), 1);
-#endif
+#endif*/
 
             NetworkIdentity localNetworkIdentity;
             if (s_NetworkScene.GetNetworkIdentity(msg.netId, out localNetworkIdentity))
@@ -470,11 +469,11 @@ namespace UnityEngine.Networking
             if (LogFilter.logDebug) { Debug.Log("Client spawn scene handler instantiating [netId:" + msg.netId + " sceneId:" + msg.sceneId + " pos:" + msg.position); }
 
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Incoming,
                 MsgType.ObjectSpawnScene, "sceneId", 1);
-#endif
+#endif*/
 
             NetworkIdentity localNetworkIdentity;
             if (s_NetworkScene.GetNetworkIdentity(msg.netId, out localNetworkIdentity))
@@ -536,11 +535,11 @@ namespace UnityEngine.Networking
             NetworkIdentity localObject;
             if (s_NetworkScene.GetNetworkIdentity(msg.netId, out localObject))
             {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
                 UnityEditor.NetworkDetailStats.IncrementStat(
                     UnityEditor.NetworkDetailStats.NetworkDirection.Incoming,
                     MsgType.ObjectDestroy, GetStringForAssetId(localObject.assetId), 1);
-#endif
+#endif*/
                 localObject.OnNetworkDestroy();
 
                 if (!NetworkScene.InvokeUnSpawnHandler(localObject.assetId, localObject.gameObject))
@@ -667,11 +666,11 @@ namespace UnityEngine.Networking
                 if (LogFilter.logWarn) { Debug.LogWarning("Did not find target for SyncEvent message for " + netId); }
             }
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.SyncEvent, NetworkBehaviour.GetCmdHashHandlerName(cmdHash), 1);
-#endif
+#endif*/
         }
 
         static void OnSyncListMessage(NetworkMessage netMsg)
@@ -691,11 +690,11 @@ namespace UnityEngine.Networking
                 if (LogFilter.logWarn) { Debug.LogWarning("Did not find target for SyncList message for " + netId); }
             }
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
             UnityEditor.NetworkDetailStats.IncrementStat(
                 UnityEditor.NetworkDetailStats.NetworkDirection.Outgoing,
                 MsgType.SyncList, NetworkBehaviour.GetCmdHashHandlerName(cmdHash), 1);
-#endif
+#endif*/
         }
 
         static void OnClientAuthority(NetworkMessage netMsg)
@@ -772,4 +771,3 @@ namespace UnityEngine.Networking
         }
     }
 }
-#endif //ENABLE_UNET

@@ -1,4 +1,3 @@
-#if ENABLE_UNET
 using UnityEditor;
 using UnityEngine;
 using System.Collections;
@@ -137,4 +136,3 @@ namespace UnityEditor
         }
     }
 }
-#endif //ENABLE_UNET
