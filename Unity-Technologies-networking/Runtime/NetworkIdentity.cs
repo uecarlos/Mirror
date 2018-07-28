@@ -742,6 +742,12 @@ namespace UnityEngine.Networking
             // go through each channel
             for (int channelId = 0; channelId < NetworkServer.numChannels; channelId++)
             {
+                // serialize for owner
+                
+                // serialize for observers
+                
+                
+
                 // serialize all the dirty components and send (if any were dirty)
                 NetworkWriter writer = new NetworkWriter();
                 if (OnSerializeAllSafely(m_NetworkBehaviours, writer, false, channelId))

@@ -187,6 +187,7 @@ namespace Unity.UNetWeaver
         public static MethodReference gameObjectInequality;
 
         public static MethodReference setSyncVarReference;
+        public static MethodReference setSyncOwnerVarReference;
         public static MethodReference setSyncVarHookGuard;
         public static MethodReference getSyncVarHookGuard;
         public static MethodReference setSyncVarGameObjectReference;
@@ -1454,6 +1455,7 @@ namespace Unity.UNetWeaver
             UBehaviourIsServer  = ResolveMethod(NetworkBehaviourType, "get_isServer");
             getPlayerIdReference = ResolveMethod(NetworkBehaviourType, "get_playerControllerId");
             setSyncVarReference = ResolveMethod(NetworkBehaviourType, "SetSyncVar");
+            setSyncOwnerVarReference = ResolveMethod(NetworkBehaviourType, "SetSyncOwnerVar");
             setSyncVarHookGuard = ResolveMethod(NetworkBehaviourType, "set_syncVarHookGuard");
             getSyncVarHookGuard = ResolveMethod(NetworkBehaviourType, "get_syncVarHookGuard");
 

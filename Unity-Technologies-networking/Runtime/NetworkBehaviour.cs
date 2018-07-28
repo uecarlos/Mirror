@@ -11,6 +11,7 @@ namespace UnityEngine.Networking
     public class NetworkBehaviour : MonoBehaviour
     {
         ulong m_SyncVarDirtyBits; // ulong instead of uint for 64 instead of 32 SyncVar limit per component
+        ulong m_SyncOwnerVarDirtyBits; // ulong instead of uint for 64 instead of 32 SyncVar limit per component
         float m_LastSendTime;
 
         // this prevents recursion when SyncVar hook functions are called.
@@ -532,10 +533,31 @@ namespace UnityEngine.Networking
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void SetSyncOwnerVar<T>(T value, ref T fieldValue, ulong dirtyBit)
+        {
+            // newly initialized or changed value?
+            if ((value == null && fieldValue != null) ||
+                (value != null && !value.Equals(fieldValue)))
+            {
+                if (LogFilter.logDev) { Debug.Log("SetSyncOwnerVar " + GetType().Name + " bit [" + dirtyBit + "] " + fieldValue + "->" + value); }
+                // set original dirty bit and remember that it was an owner var by setting the owner var dirty bit
+                SetDirtyBit(dirtyBit);
+                SetOwnerDirtyBit(dirtyBit);
+                fieldValue = value;
+            }
+        }
+
         // these are masks, not bit numbers, ie. 0x004 not 2
         public void SetDirtyBit(ulong dirtyBit)
         {
             m_SyncVarDirtyBits |= dirtyBit;
+        }
+
+        // these are masks, not bit numbers, ie. 0x004 not 2
+        public void SetOwnerDirtyBit(ulong dirtyBit)
+        {
+            m_SyncOwnerVarDirtyBits |= dirtyBit;
         }
 
         public void ClearAllDirtyBits()
@@ -548,7 +570,7 @@ namespace UnityEngine.Networking
         {
             return
                 (Time.time - m_LastSendTime > GetNetworkSendInterval())
-                && m_SyncVarDirtyBits != 0L;
+                && (m_SyncVarDirtyBits != 0L || m_SyncOwnerVarDirtyBits != 0L);
         }
 
         public virtual bool OnSerialize(NetworkWriter writer, bool initialState)

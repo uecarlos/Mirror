@@ -1902,6 +1902,32 @@ namespace Unity.UNetWeaver
             return get;
         }
 
+        int GetSyncVarSyncTarget(FieldDefinition fd)
+        {
+            // TODO setsyncvar or setsyncownervar?
+            foreach (CustomAttribute attr in fd.CustomAttributes)
+            {
+                //Log.Warning("fd=" + fd.Name); // + " attr=" + attr.ToString() + " attr type=" + attr.GetType());
+                //if (attr != null) Log.Warning("fd=" + fd.Name + " attr=" + attr);
+                //if (attr != null) Log.Warning("fd=" + fd.Name + " attr=" + attr + " type=" + attr.AttributeType);
+
+                // attr.AttributeType is: UnityEngine.Networking.SyncVarAttribute
+                foreach (var field in attr.Fields)
+                {
+                    if (field.Name == "target") // SyncVar.target == SyncTarget.XYZ
+                    {
+                        //Log.Warning("  field:" + field + " name= " + field.Name + " value=" + field.Argument.Value);
+                        //Log.Warning("  field:" + field + " name= " + field.Name + " value=" + (int) field.Argument.Value);
+
+                        // SyncTarget enum: 0 == Observers, 1 == Owner
+                        return (int)field.Argument.Value;
+                    }
+                }
+            }
+
+            return 0;
+        }
+
         MethodDefinition ProcessSyncVarSet(FieldDefinition fd, string originalName, long dirtyBit, FieldDefinition netFieldId)
         {
             //Create the set method
@@ -1966,12 +1992,28 @@ namespace Unity.UNetWeaver
             }
             else
             {
-                // make generic version of SetSyncVar with field type
-                GenericInstanceMethod gm = new GenericInstanceMethod(Weaver.setSyncVarReference);
-                gm.GenericArguments.Add(fd.FieldType);
+                int syncTarget = GetSyncVarSyncTarget(fd);
 
-                // invoke SetSyncVar
-                setWorker.Append(setWorker.Create(OpCodes.Call, gm));
+                // SyncTarget.Observers
+                if (syncTarget == 0)
+                {
+                    // make generic version of SetSyncVar with field type
+                    GenericInstanceMethod gm = new GenericInstanceMethod(Weaver.setSyncVarReference);
+                    gm.GenericArguments.Add(fd.FieldType);
+
+                    // invoke SetSyncVar
+                    setWorker.Append(setWorker.Create(OpCodes.Call, gm));
+                }
+                else if (syncTarget == 1)
+                {
+                    // make generic version of SetSyncVar with field type
+                    GenericInstanceMethod gm = new GenericInstanceMethod(Weaver.setSyncOwnerVarReference);
+                    gm.GenericArguments.Add(fd.FieldType);
+
+                    // invoke SetSyncVar
+                    setWorker.Append(setWorker.Create(OpCodes.Call, gm));
+                }
+                else Log.Error("Unknown SyncVar.SyncTarget: " + syncTarget);
             }
 
             setWorker.Append(setWorker.Create(OpCodes.Ret));
