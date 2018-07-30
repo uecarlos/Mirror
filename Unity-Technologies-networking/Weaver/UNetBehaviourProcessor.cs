@@ -1951,7 +1951,8 @@ namespace Unity.UNetWeaver
 
             // dirty bit
             setWorker.Append(setWorker.Create(OpCodes.Ldc_I8, dirtyBit)); // 8 byte integer aka long
-
+            // TODO: set owner dirty bit too
+            
             MethodDefinition hookFunctionMethod;
             CheckForHookFunction(fd, out hookFunctionMethod);
 
