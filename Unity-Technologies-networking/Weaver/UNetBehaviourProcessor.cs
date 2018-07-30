@@ -1910,7 +1910,8 @@ namespace Unity.UNetWeaver
                 //Log.Warning("fd=" + fd.Name); // + " attr=" + attr.ToString() + " attr type=" + attr.GetType());
                 //if (attr != null) Log.Warning("fd=" + fd.Name + " attr=" + attr);
                 //if (attr != null) Log.Warning("fd=" + fd.Name + " attr=" + attr + " type=" + attr.AttributeType);
-
+                
+                // TODO: make sure we are checking if it [SyncVar] and not some other attribute
                 // attr.AttributeType is: UnityEngine.Networking.SyncVarAttribute
                 foreach (var field in attr.Fields)
                 {
