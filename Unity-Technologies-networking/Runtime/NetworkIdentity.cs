@@ -742,9 +742,9 @@ namespace UnityEngine.Networking
             // go through each channel
             for (int channelId = 0; channelId < NetworkServer.numChannels; channelId++)
             {
-                // serialize for owner
+                // TODO: serialize for owner
                 
-                // serialize for observers
+                // TODO: serialize for observers
                 
                 
 
